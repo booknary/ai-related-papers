@@ -2,6 +2,8 @@ import { config } from "../../package.json";
 import { getString } from "../utils/locale";
 import { getPref, setPref } from "../utils/prefs";
 import { RelatedPrefs, SearchScopeMode } from "./related/types";
+import { bindModelSelector } from "./ai/modelSelector";
+import { ModelCatalogError } from "./ai/modelCatalog";
 
 type PluginPrefKey = keyof _ZoteroTypes.Prefs["PluginPrefsMap"];
 
@@ -111,12 +113,47 @@ export function registerPreferenceWindow(window: Window) {
     "aiAPIKey",
     "",
   );
-  bindStringPreference(
+  bindModelSelector({
     window,
-    `zotero-prefpane-${config.addonRef}-aiModel`,
-    "aiModel",
-    DEFAULT_MODEL,
-  );
+    prefix: `zotero-prefpane-${config.addonRef}`,
+    initialModel: getStringPref("aiModel", DEFAULT_MODEL),
+    getConnection: () => ({
+      baseURL: (
+        window.document.getElementById(
+          `zotero-prefpane-${config.addonRef}-aiBaseURL`,
+        ) as HTMLInputElement
+      ).value,
+      apiKey: (
+        window.document.getElementById(
+          `zotero-prefpane-${config.addonRef}-aiAPIKey`,
+        ) as HTMLInputElement
+      ).value,
+    }),
+    saveModel: (model) => setPref("aiModel", model),
+    messages: {
+      custom: getString("models-custom"),
+      current: (model) => getString("models-current", { args: { model } }),
+      loading: getString("models-loading"),
+      loaded: (count) => getString("models-loaded", { args: { count } }),
+      failed: (error) => {
+        if (error instanceof ModelCatalogError) {
+          if (error.code === "missing-key")
+            return getString("models-missing-key");
+          if (error.code === "invalid-url")
+            return getString("models-invalid-url");
+          if (error.code === "http")
+            return getString("models-http-error", {
+              args: { status: error.status },
+            });
+          if (error.code === "empty") return getString("models-empty");
+          if (error.code === "invalid-response")
+            return getString("models-invalid-response");
+          if (error.code === "timeout") return getString("models-timeout");
+        }
+        return getString("models-network-error");
+      },
+    },
+  });
   bindBooleanPreference(
     window,
     `zotero-prefpane-${config.addonRef}-aiThinkingEnabled`,

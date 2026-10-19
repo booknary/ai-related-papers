@@ -1,7 +1,7 @@
 {
   "name": "ai-related-papers",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Zotero plugin for finding, reviewing, linking, visualizing, and AI-tagging related papers.",
   "config": {
     "addonName": "AI Related Papers",

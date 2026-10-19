@@ -1,4 +1,15 @@
 prefs-title = AI Related Papers
+models-custom = Enter a model ID manually…
+models-current = Saved: { $model }
+models-loading = Fetching available models…
+models-loaded = Loaded { $count } model(s).
+models-missing-key = Enter an API key before fetching models.
+models-invalid-url = Enter a valid API base URL without query parameters or credentials.
+models-http-error = Model list request failed (HTTP { $status }). Check your API key and base URL. Your selected model was kept.
+models-empty = The API returned no usable models. Your selected model was kept.
+models-invalid-response = The API returned an invalid model list. Your selected model was kept.
+models-timeout = Model list request timed out. Retry or enter a model ID manually.
+models-network-error = Could not fetch models. Check the connection and base URL, or enter a model ID manually.
 menu-find-related =
     .label = Find Related Papers
 menu-open-related-network =

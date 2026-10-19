@@ -5,7 +5,7 @@
 A Zotero plugin for local related-paper discovery, reviewed bidirectional links,
 interactive related networks, optional AI reranking, and AI keyword tags.
 
-Version **0.1.1** was tested on **Zotero 10.0.6 / Windows** with 10 regression
+Version **0.1.2** was tested on **Zotero 10.0.6 / Windows** with 22 regression
 checks in an isolated test profile. A Zotero 9 selection fallback is retained and
 unit-tested; Zotero 9 itself was not rerun for this version. Compatibility is
 declared through Zotero `10.0.*`.
@@ -71,6 +71,17 @@ Already related items are excluded from new candidates.
 
 ### AI API
 
+Enter your base URL and key, click **Fetch models**, then select a model from
+the dropdown. With the default URL, this calls DeepSeek's official
+`GET https://api.deepseek.com/models`; custom compatible providers use
+`{baseURL}/models`. See the [official model-list documentation](https://api-docs.deepseek.com/api/list-models/).
+
+Model IDs and optional display names come from the API. The selection is saved
+and shared by reranking and tagging. Refreshing does not change your model;
+failures preserve it. Choose **Enter a model ID manually** for custom models.
+Changing the URL or key discards the current list. Discovery runs only when you
+click the button, is not cached between sessions, and has a 15-second timeout.
+
 Requests go to `POST {baseURL}/chat/completions`. Do not include the final
 `/chat/completions` in the base URL. Enter keys only in Zotero settings.
 
@@ -86,6 +97,7 @@ Zotero compatibility tests.
 
 Local scoring, graph display, and clearing links do not call the AI API.
 
+- Fetching models authenticates to the configured API without sending paper metadata.
 - Reranking sends source and local Top N metadata: title, abstract, authors,
   tags, year, item ID, and candidate local score. Title/abstract caps are
   300/1,200 characters per item.

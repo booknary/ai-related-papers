@@ -1,4 +1,15 @@
 prefs-title = AI Related Papers
+models-custom = 手动输入模型 ID…
+models-current = 已保存：{ $model }
+models-loading = 正在获取可用模型…
+models-loaded = 已获取 { $count } 个模型。
+models-missing-key = 请先填写 API Key，再获取模型列表。
+models-invalid-url = 请填写有效的 API Base URL，不要包含查询参数或账号密码。
+models-http-error = 获取模型列表失败（HTTP { $status }），请检查 API Key 和地址。已保留原模型。
+models-empty = API 未返回可用模型，已保留原模型。
+models-invalid-response = API 返回的模型列表格式无效，已保留原模型。
+models-timeout = 获取模型列表超时，请重试或手动输入模型 ID。
+models-network-error = 无法获取模型列表，请检查网络和 API 地址，或手动输入模型 ID。
 menu-find-related =
     .label = 查找关联文献
 menu-open-related-network =

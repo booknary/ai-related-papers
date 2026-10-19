@@ -7,8 +7,8 @@
 
 [English](doc/README-en.md) · [下载与版本](https://github.com/booknary/ai-related-papers/releases) · [问题反馈](https://github.com/booknary/ai-related-papers/issues)
 
-当前版本 **0.1.1**，已在 **Zotero 10.0.6 / Windows** 的隔离测试库中通过
-10 项回归测试。保留 Zotero 9 接口回退，但本次未重新实机测试 Zotero 9。
+当前版本 **0.1.2**，已在 **Zotero 10.0.6 / Windows** 的隔离测试库中通过
+22 项回归测试。保留 Zotero 9 接口回退，但本次未重新实机测试 Zotero 9。
 当前声明的兼容上限为 `10.0.*`。
 
 ## 安装
@@ -91,6 +91,16 @@ B 也关联 A。附件、笔记、订阅源条目、目标文献自身和已关�
 
 ### OpenAI-compatible API
 
+**获取模型候选**：填写 API Base URL 和 API Key 后，点击 **获取模型列表**，
+再从“模型”下拉菜单选择。默认从 DeepSeek 官方 `GET https://api.deepseek.com/models`
+获取当前可用模型；填写其他兼容服务地址时，请求该地址的 `/models` 接口。
+接口依据：[DeepSeek 官方模型列表文档](https://api-docs.deepseek.com/zh-cn/api/list-models/)。
+
+列表展示服务商返回的模型名和 ID。选择后保存，关联重排和标签生成共用该模型。
+刷新不会自动切换当前模型；失败时保留原设置，支持选择 **手动输入模型 ID**。
+更改 API 地址或密钥会清空本次候选，需重新获取。模型列表不会在打开设置时自动请求，
+也不跨会话缓存。列表获取有 15 秒超时。
+
 插件调用 `POST {baseURL}/chat/completions`。API Base URL 不要包含最后的
 `/chat/completions`，不要在地址中填写 API Key。
 
@@ -109,6 +119,7 @@ B 也关联 A。附件、笔记、订阅源条目、目标文献自身和已关�
 
 本地候选评分、网络显示和清除关联无需 AI 请求。
 
+- **获取模型列表**：仅向配置的 API 地址发送认证信息并请求模型目录，不发送文献内容。
 - **AI 重排**：发送来源文献及本地 Top N 候选的标题、摘要、作者、标签、年份、
   item ID 和候选本地分数。每篇标题最多 300 字符，摘要最多 1,200 字符。
 - **AI 标签**：手动触发后发送标题和摘要，最多分别为 400 和 2,400 字符。
@@ -169,13 +180,13 @@ npm run build
 推送 `main` 后，GitHub Actions 执行 CI。发布版本由维护者另行触发：
 
 1. 更新 `package.json` 和 `package-lock.json` 版本，运行构建、lint 和本机回归测试。
-2. 提交并推送后，为对应提交创建 `v<version>` 标签，例如当前版本为 `v0.1.1`。
+2. 提交并推送后，为对应提交创建 `v<version>` 标签，例如当前版本为 `v0.1.2`。
 3. 推送标签触发 `.github/workflows/release.yml`，构建 XPI 并上传到对应 GitHub Release，
    同时更新名为 `release` 的更新清单 Release。
 
 ```sh
-git tag v0.1.1
-git push origin v0.1.1
+git tag v0.1.2
+git push origin v0.1.2
 ```
 
 也可使用 `npm run release`，该命令执行 `zotero-plugin release`，会进行版本/标签及发布操作；

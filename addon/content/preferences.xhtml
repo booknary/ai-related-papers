@@ -151,12 +151,30 @@
       for="zotero-prefpane-__addonRef__-aiModel"
       data-l10n-id="pref-ai-model"
     ></html:label>
+    <html:select
+      id="zotero-prefpane-__addonRef__-aiModel"
+      style="min-width: 200px; max-width: 360px"
+    ></html:select>
+    <html:button
+      type="button"
+      id="zotero-prefpane-__addonRef__-aiFetchModels"
+      data-l10n-id="pref-ai-fetch-models"
+    ></html:button>
+  </hbox>
+  <hbox>
     <html:input
       type="text"
-      id="zotero-prefpane-__addonRef__-aiModel"
-      preference="aiModel"
+      hidden="hidden"
+      id="zotero-prefpane-__addonRef__-aiCustomModel"
+      data-l10n-id="pref-ai-custom-model"
     ></html:input>
   </hbox>
+  <html:div
+    id="zotero-prefpane-__addonRef__-aiModelsStatus"
+    role="status"
+    aria-live="polite"
+    style="font-size: 12px; margin-block: 4px; overflow-wrap: anywhere"
+  ></html:div>
   <hbox>
     <html:label
       for="zotero-prefpane-__addonRef__-aiThinkingEnabled"
