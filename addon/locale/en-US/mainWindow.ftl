@@ -1,0 +1,12 @@
+menu-find-related =
+    .label = Find Related Papers
+menu-open-related-network =
+    .label = Related Network
+menu-generate-tags =
+    .label = AI Generate Tags
+menu-clear-related =
+    .label = Clear Related Items
+related-network-section-head =
+    .label = Related Network
+related-network-section-sidenav =
+    .tooltiptext = Related Network

@@ -1,0 +1,12 @@
+menu-find-related =
+    .label = 查找关联文献
+menu-open-related-network =
+    .label = 关联网络
+menu-generate-tags =
+    .label = AI 生成标签
+menu-clear-related =
+    .label = 清除关联文献
+related-network-section-head =
+    .label = 关联网络
+related-network-section-sidenav =
+    .tooltiptext = 关联网络

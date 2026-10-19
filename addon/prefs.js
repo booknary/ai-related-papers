@@ -1,0 +1,16 @@
+pref("maxCandidates", 10);
+pref("minScorePercent", 3);
+pref("searchScope", "collection");
+pref("titleWeight", 45);
+pref("abstractWeight", 35);
+pref("authorWeight", 15);
+pref("tagWeight", 5);
+pref("aiEnabled", false);
+pref("aiBaseURL", "https://api.deepseek.com");
+pref("aiAPIKey", "");
+pref("aiModel", "deepseek-v4-pro");
+pref("aiThinkingEnabled", true);
+pref("aiReasoningEffort", "high");
+pref("aiCandidateLimit", 10);
+pref("aiScoreWeightPercent", 50);
+pref("aiTagCount", 5);

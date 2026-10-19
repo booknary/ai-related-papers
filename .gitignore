@@ -1,0 +1,41 @@
+# dot files
+.DS_Store
+
+# Node.js
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TSC
+tsconfig.tsbuildinfo
+
+# Scaffold
+.env
+.env.*
+!.env.example
+.scaffold/
+build/
+logs/
+
+# Local release/build artifacts
+*.xpi
+*.zip
+*.tgz
+
+# Editor/local files
+.idea/
+.vscode/
+
+# Other local projects, package caches, and conversation exports
+/ZaiChat_20260813/
+/.pnpm-store/
+/chat-*.json
+/doc/README-frFR.md
+/logo.png
+/logo_new.png
+
+# Unused template automation
+/.github/workflows/issue-bot.yml
